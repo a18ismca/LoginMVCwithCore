@@ -12,10 +12,10 @@ namespace LoginAppMVC.Models
         private readonly string ConnectionString = "Server=localhost;Database=ismetsdb;User ID=root;Password=Pridvorci99;Pooling=false;SslMode=none;convert zero datetime=True;";
 
 
-        public DataTable GetAllUsers() {
+        public DataTable GetAllUsernames() {
             MySqlConnection dbcon = new MySqlConnection(ConnectionString);
             dbcon.Open();
-            MySqlDataAdapter adapter = new MySqlDataAdapter("select * from users;", dbcon);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("select name from users;", dbcon);
             DataSet ds = new DataSet();
             adapter.Fill(ds, "result");
             DataTable userTable = ds.Tables["result"];
@@ -24,5 +24,22 @@ namespace LoginAppMVC.Models
             return userTable;
 
         }
+
+        public DataTable GetAllPasswords()
+        {
+            MySqlConnection dbcon = new MySqlConnection(ConnectionString);
+            dbcon.Open();
+            MySqlDataAdapter adapter = new MySqlDataAdapter("select password from users;", dbcon);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "result");
+            DataTable userTable = ds.Tables["result"];
+            dbcon.Close();
+
+            return userTable;
+
+        }
+
+
+
     }
 }

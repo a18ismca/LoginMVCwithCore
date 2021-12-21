@@ -14,8 +14,25 @@ namespace LoginAppMVC.Controllers
         public IActionResult LoginView()
         {
             var loginConnection = new LoginConnect();
-            ViewBag.LoginTable = loginConnection.GetAllUsers();
+            ViewBag.LoginTable = loginConnection.GetAllUsernames();
+
             return View();
         }
+   
+        public IActionResult Check()
+        {
+            var loginConnection = new LoginConnect();
+
+            var storedUsernames = loginConnection.GetAllUsernames();
+            var storedPasswords = loginConnection.GetAllPasswords();
+            
+
+            TempData["statement"] = "Baby button clicked.";
+
+            
+            return RedirectToAction("LoginView");
+        }
+
+
     }
 }

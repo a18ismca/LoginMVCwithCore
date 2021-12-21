@@ -5,26 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Hello baby!</h2>
+<h2>Quiz login</h2>
 
-<h2>Students</h2>
+<label>Username</label><br />
+<input type="text" /><br />
+<label>Password</label><br />
+<input type="password"/> <br />
+<form>
+    <button asp-action="Check">Login!</button>
+</form>
 
-<label>Username</label> <br />
-    <input 
-<label>Password</label> <br />
+<div>
+    @TempData["statement"]
+</div>
+
+
 <table>
     <tr>
-        @foreach (var dataColumn in ViewBag.LoginTable.Columns)
-        {
-            <th>@dataColumn.ColumnName</th>
-        }
+        <th>You can log in as following users below:</th>
     </tr>
-    @foreach (var customerRow in ViewBag.LoginTable.Rows)
+    @foreach (var userRow in ViewBag.LoginTable.Rows)
     {
         <tr>
             @for (int i = 0; i < ViewBag.LoginTable.Columns.Count; ++i)
             {
-                <td>@customerRow[i]</td>
+                <td>@userRow[i]</td>
             }
         </tr>
     }

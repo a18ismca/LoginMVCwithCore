@@ -5,3 +5,13 @@
 <h3>@ViewData["Message"]</h3>
 
 <p>Use this area to provide additional information.</p>
+
+
+<form>
+    <button name="button" value="hi" asp-action="Check">hi</button>
+    <button name="button" value="die" asp-action="Check">die</button>
+</form>
+
+<div>
+    @TempData["buttonval"]
+</div>
